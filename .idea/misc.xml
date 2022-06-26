@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_cloudy.xml" value="0.214" />
+        <entry key="app/src/main/res/drawable/ic_rainythunder.xml" value="0.214" />
         <entry key="app/src/main/res/drawable/ic_sunnycloudy.xml" value="0.214" />
         <entry key="app/src/main/res/drawable/ic_thunder.xml" value="0.214" />
       </map>
