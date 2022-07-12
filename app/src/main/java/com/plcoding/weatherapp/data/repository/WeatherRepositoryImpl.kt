@@ -5,9 +5,8 @@ import com.plcoding.weatherapp.data.remote.WeatherApi
 import com.plcoding.weatherapp.domain.repository.WeatherRepository
 import com.plcoding.weatherapp.domain.util.Resource
 import com.plcoding.weatherapp.domain.weather.WeatherInfo
-import javax.inject.Inject
 
-class WeatherRepositoryImpl @Inject constructor(
+class WeatherRepositoryImpl (
     private val api: WeatherApi
 ): WeatherRepository {
 

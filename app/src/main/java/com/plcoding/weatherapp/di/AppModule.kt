@@ -1,35 +1,37 @@
 package com.plcoding.weatherapp.di
 
-import android.app.Application
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.plcoding.weatherapp.data.location.DefaultLocationTracker
 import com.plcoding.weatherapp.data.remote.WeatherApi
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
-import javax.inject.Singleton
+import com.plcoding.weatherapp.data.repository.WeatherRepositoryImpl
+import com.plcoding.weatherapp.domain.location.LocationTracker
+import com.plcoding.weatherapp.domain.repository.WeatherRepository
+import com.plcoding.weatherapp.presentation.WeatherViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-object AppModule {
-
-    @Provides
-    @Singleton
-    fun provideWeatherApi(): WeatherApi {
-        return Retrofit.Builder()
-            .baseUrl("https://api.open-meteo.com/")
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-            .create()
+@OptIn(ExperimentalCoroutinesApi::class)
+val appModule = module {
+    single<WeatherApi> {
+        WeatherApi.create()
     }
 
-    @Provides
-    @Singleton
-    fun provideFusedLocationProviderClient(app: Application): FusedLocationProviderClient {
-        return LocationServices.getFusedLocationProviderClient(app)
+    single<FusedLocationProviderClient> {
+        LocationServices.getFusedLocationProviderClient(androidContext())
+    }
+
+    single<LocationTracker> {
+        DefaultLocationTracker(get(), androidApplication())
+    }
+
+    single<WeatherRepository> {
+        WeatherRepositoryImpl(get())
+    }
+    viewModel {
+        WeatherViewModel(get(), get())
     }
 }

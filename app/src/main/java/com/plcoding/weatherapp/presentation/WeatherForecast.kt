@@ -1,12 +1,14 @@
 package com.plcoding.weatherapp.presentation
 
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -16,27 +18,30 @@ fun WeatherForecast(
     modifier: Modifier = Modifier
 ) {
     state.weatherInfo?.weatherDataPerDay?.get(0)?.let { data ->
-        Column(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+        Surface(
+            modifier = modifier,
+            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.67f),
+            shape = RoundedCornerShape(10.dp),
+            shadowElevation = 0.dp
         ) {
-            Text(
-                text = "Today",
-                fontSize = 20.sp,
-                color = Color.White
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            LazyRow(content = {
-                items(data) { weatherData ->
-                    HourlyWeatherDisplay(
-                        weatherData = weatherData,
-                        modifier = Modifier
-                            .height(100.dp)
-                            .padding(horizontal = 16.dp)
-                    )
-                }
-            })
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
+            ) {
+                Text(
+                    text = "Today",
+                    fontSize = 20.sp,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                WeatherGraph(
+                    data = data,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .horizontalScroll(state = rememberScrollState())
+                )
+            }
         }
     }
 }
