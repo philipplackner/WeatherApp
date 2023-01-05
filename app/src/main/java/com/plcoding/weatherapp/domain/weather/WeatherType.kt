@@ -63,62 +63,62 @@ sealed class WeatherType(
         weatherDesc = "Heavy rain",
         iconRes = R.drawable.ic_rainy
     )
-    object HeavyFreezingRain: WeatherType(
+    object HeavyFreezingRain : WeatherType(
         weatherDesc = "Heavy freezing rain",
         iconRes = R.drawable.ic_snowyrainy
     )
-    object SlightSnowFall: WeatherType(
+    object SlightSnowFall : WeatherType(
         weatherDesc = "Slight snow fall",
         iconRes = R.drawable.ic_snowy
     )
-    object ModerateSnowFall: WeatherType(
+    object ModerateSnowFall : WeatherType(
         weatherDesc = "Moderate snow fall",
         iconRes = R.drawable.ic_heavysnow
     )
-    object HeavySnowFall: WeatherType(
+    object HeavySnowFall : WeatherType(
         weatherDesc = "Heavy snow fall",
         iconRes = R.drawable.ic_heavysnow
     )
-    object SnowGrains: WeatherType(
+    object SnowGrains : WeatherType(
         weatherDesc = "Snow grains",
         iconRes = R.drawable.ic_heavysnow
     )
-    object SlightRainShowers: WeatherType(
+    object SlightRainShowers : WeatherType(
         weatherDesc = "Slight rain showers",
         iconRes = R.drawable.ic_rainshower
     )
-    object ModerateRainShowers: WeatherType(
+    object ModerateRainShowers : WeatherType(
         weatherDesc = "Moderate rain showers",
         iconRes = R.drawable.ic_rainshower
     )
-    object ViolentRainShowers: WeatherType(
+    object ViolentRainShowers : WeatherType(
         weatherDesc = "Violent rain showers",
         iconRes = R.drawable.ic_rainshower
     )
-    object SlightSnowShowers: WeatherType(
+    object SlightSnowShowers : WeatherType(
         weatherDesc = "Light snow showers",
         iconRes = R.drawable.ic_snowy
     )
-    object HeavySnowShowers: WeatherType(
+    object HeavySnowShowers : WeatherType(
         weatherDesc = "Heavy snow showers",
         iconRes = R.drawable.ic_snowy
     )
-    object ModerateThunderstorm: WeatherType(
+    object ModerateThunderstorm : WeatherType(
         weatherDesc = "Moderate thunderstorm",
         iconRes = R.drawable.ic_thunder
     )
-    object SlightHailThunderstorm: WeatherType(
+    object SlightHailThunderstorm : WeatherType(
         weatherDesc = "Thunderstorm with slight hail",
         iconRes = R.drawable.ic_rainythunder
     )
-    object HeavyHailThunderstorm: WeatherType(
+    object HeavyHailThunderstorm : WeatherType(
         weatherDesc = "Thunderstorm with heavy hail",
         iconRes = R.drawable.ic_rainythunder
     )
 
     companion object {
         fun fromWMO(code: Int): WeatherType {
-            return when(code) {
+            return when (code) {
                 0 -> ClearSky
                 1 -> MainlyClear
                 2 -> PartlyCloudy
