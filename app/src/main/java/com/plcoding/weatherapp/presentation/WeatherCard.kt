@@ -93,8 +93,8 @@ fun WeatherCard(
                     WeatherDataDisplay(
                         value = data.rain.roundToInt(),
                         unit = "mm",
-                        icon = ImageVector.vectorResource(id = R.drawable.ic_drop),
-                        iconTint = Color.Red,
+                        icon = ImageVector.vectorResource(id = R.drawable.ic_rain_mm),
+                        iconTint = Color.White,
                         textStyle = TextStyle(color = Color.White)
                     )
                 }
