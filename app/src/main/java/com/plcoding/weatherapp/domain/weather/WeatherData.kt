@@ -8,5 +8,6 @@ data class WeatherData(
     val pressure: Double,
     val windSpeed: Double,
     val humidity: Double,
-    val weatherType: WeatherType
+    val weatherType: WeatherType,
+    val rain: Double
 )

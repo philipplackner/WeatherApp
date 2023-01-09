@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
     private val api: WeatherApi
-): WeatherRepository {
+) : WeatherRepository {
 
     override suspend fun getWeatherData(lat: Double, long: Double): Resource<WeatherInfo> {
         return try {
@@ -19,7 +19,7 @@ class WeatherRepositoryImpl @Inject constructor(
                     long = long
                 ).toWeatherInfo()
             )
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
             Resource.Error(e.message ?: "An unknown error occurred.")
         }

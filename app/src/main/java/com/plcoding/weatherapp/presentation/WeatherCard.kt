@@ -39,9 +39,9 @@ fun WeatherCard(
             ) {
                 Text(
                     text = "Today ${
-                        data.time.format(
-                            DateTimeFormatter.ofPattern("HH:mm")
-                        )
+                    data.time.format(
+                        DateTimeFormatter.ofPattern("HH:mm")
+                    )
                     }",
                     modifier = Modifier.align(Alignment.End),
                     color = Color.White
@@ -88,6 +88,13 @@ fun WeatherCard(
                         unit = "km/h",
                         icon = ImageVector.vectorResource(id = R.drawable.ic_wind),
                         iconTint = Color.White,
+                        textStyle = TextStyle(color = Color.White)
+                    )
+                    WeatherDataDisplay(
+                        value = data.rain.roundToInt(),
+                        unit = "mm",
+                        icon = ImageVector.vectorResource(id = R.drawable.ic_drop),
+                        iconTint = Color.Red,
                         textStyle = TextStyle(color = Color.White)
                     )
                 }
