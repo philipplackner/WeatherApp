@@ -44,7 +44,7 @@ fun HourlyWeatherDisplay(
             modifier = Modifier.width(40.dp)
         )
         Text(
-            text = "${weatherData.temperatureCelsius} degrees Celsius",
+            text = "${weatherData.temperatureCelsius} °C",
             color = textColor,
             fontWeight = FontWeight.Bold
         )

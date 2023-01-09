@@ -53,7 +53,7 @@ fun WeatherCard(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "${data.temperatureCelsius} degrees Celsius",
+                    text = "${data.temperatureCelsius} °C",
                     fontSize = 50.sp,
                     color = Color.White
                 )
