@@ -24,15 +24,13 @@ fun HourlyWeatherDisplay(
 ) {
     val formattedTime = remember(weatherData) {
         weatherData.time.format(
-            (
-                DateTimeFormatter.ofPattern("HH:mm")
-                )
+            DateTimeFormatter.ofPattern("HH:mm")
         )
     }
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceAround
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
             text = formattedTime,
@@ -44,7 +42,7 @@ fun HourlyWeatherDisplay(
             modifier = Modifier.width(40.dp)
         )
         Text(
-            text = "${weatherData.temperatureCelsius} °C",
+            text = "${weatherData.temperatureCelsius}°C",
             color = textColor,
             fontWeight = FontWeight.Bold
         )

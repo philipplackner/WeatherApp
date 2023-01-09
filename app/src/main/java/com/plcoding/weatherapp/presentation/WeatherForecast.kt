@@ -17,8 +17,9 @@ fun WeatherForecast(
 ) {
     state.weatherInfo?.weatherDataPerDay?.get(0)?.let { data ->
         Column(
-            modifier = modifier.fillMaxWidth()
-                .padding(16.dp)
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
         ) {
             Text(
                 text = "Today",

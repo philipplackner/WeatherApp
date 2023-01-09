@@ -34,13 +34,14 @@ fun WeatherCard(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
                     text = "Today ${
-                    data.time.format(
-                        DateTimeFormatter.ofPattern("HH:mm")
-                    )
+                        data.time.format(
+                            DateTimeFormatter.ofPattern("HH:mm")
+                        )
                     }",
                     modifier = Modifier.align(Alignment.End),
                     color = Color.White
@@ -53,7 +54,7 @@ fun WeatherCard(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "${data.temperatureCelsius} °C",
+                    text = "${data.temperatureCelsius}°C",
                     fontSize = 50.sp,
                     color = Color.White
                 )
@@ -63,7 +64,7 @@ fun WeatherCard(
                     fontSize = 20.sp,
                     color = Color.White
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(32.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceAround
