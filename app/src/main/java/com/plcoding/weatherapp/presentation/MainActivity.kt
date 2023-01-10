@@ -16,10 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.plcoding.weatherapp.data.location.CityProvider
 import com.plcoding.weatherapp.presentation.ui.theme.DarkBlue
 import com.plcoding.weatherapp.presentation.ui.theme.DeepBlue
 import com.plcoding.weatherapp.presentation.ui.theme.WeatherAppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -29,6 +31,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         permissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
         ) {

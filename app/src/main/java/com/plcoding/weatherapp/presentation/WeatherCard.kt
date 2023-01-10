@@ -15,6 +15,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.plcoding.weatherapp.R
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
@@ -37,15 +38,24 @@ fun WeatherCard(
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = "Today ${
-                    data.time.format(
-                        DateTimeFormatter.ofPattern("HH:mm")
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+
+                ) {
+                    Text(
+                        text = "${}",
+                        color = Color.White
                     )
-                    }",
-                    modifier = Modifier.align(Alignment.End),
-                    color = Color.White
-                )
+                    Text(
+                        text = "Today ${
+                        data.time.format(
+                            DateTimeFormatter.ofPattern("HH:mm")
+                        )
+                        }",
+                        color = Color.White
+                    )
+                }
                 Spacer(modifier = Modifier.height(16.dp))
                 Image(
                     painter = painterResource(id = data.weatherType.iconRes),
