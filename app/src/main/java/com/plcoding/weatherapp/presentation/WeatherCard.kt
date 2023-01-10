@@ -91,7 +91,7 @@ fun WeatherCard(
                         textStyle = TextStyle(color = Color.White)
                     )
                     WeatherDataDisplay(
-                        value = data.rain.roundToInt(),
+                        value = data.rain,
                         unit = "mm",
                         icon = ImageVector.vectorResource(id = R.drawable.ic_rain_mm),
                         iconTint = Color.White,
@@ -102,3 +102,9 @@ fun WeatherCard(
         }
     }
 }
+
+// @Preview("Weather card preview")
+// @Composable
+// fun WeatherCardPreview() {
+//    WeatherCard(state = WeatherState(), backgroundColor = DeepBlue)
+// }
