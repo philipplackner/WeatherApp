@@ -39,9 +39,9 @@ fun WeatherCard(
             ) {
                 Text(
                     text = "Today ${
-                        data.time.format(
-                            DateTimeFormatter.ofPattern("HH:mm")
-                        )
+                    data.time.format(
+                        DateTimeFormatter.ofPattern("HH:mm")
+                    )
                     }",
                     modifier = Modifier.align(Alignment.End),
                     color = Color.White
@@ -90,8 +90,21 @@ fun WeatherCard(
                         iconTint = Color.White,
                         textStyle = TextStyle(color = Color.White)
                     )
+                    WeatherDataDisplay(
+                        value = data.rain,
+                        unit = "mm",
+                        icon = ImageVector.vectorResource(id = R.drawable.ic_rain_mm),
+                        iconTint = Color.White,
+                        textStyle = TextStyle(color = Color.White)
+                    )
                 }
             }
         }
     }
 }
+
+// @Preview("Weather card preview")
+// @Composable
+// fun WeatherCardPreview() {
+//    WeatherCard(state = WeatherState(), backgroundColor = DeepBlue)
+// }
