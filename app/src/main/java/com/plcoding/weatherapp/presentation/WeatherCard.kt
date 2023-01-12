@@ -44,7 +44,7 @@ fun WeatherCard(
 
                 ) {
                     Text(
-                        text = "${}",
+                        text = "${data.city}",
                         color = Color.White
                     )
                     Text(

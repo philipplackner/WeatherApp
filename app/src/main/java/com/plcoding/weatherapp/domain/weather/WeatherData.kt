@@ -10,5 +10,5 @@ data class WeatherData(
     val humidity: Double,
     val weatherType: WeatherType,
     val rain: Double,
-    val city: String
+    var city: String? = null
 )
