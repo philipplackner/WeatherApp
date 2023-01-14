@@ -8,7 +8,11 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
@@ -20,7 +24,6 @@ import com.plcoding.weatherapp.presentation.ui.theme.DarkBlue
 import com.plcoding.weatherapp.presentation.ui.theme.DeepBlue
 import com.plcoding.weatherapp.presentation.ui.theme.WeatherAppTheme
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -35,7 +38,6 @@ class MainActivity : ComponentActivity() {
             ActivityResultContracts.RequestMultiplePermissions()
         ) {
             viewModel.loadWeatherInfo()
-            viewModel.loadCity()
         }
         permissionLauncher.launch(
             arrayOf(

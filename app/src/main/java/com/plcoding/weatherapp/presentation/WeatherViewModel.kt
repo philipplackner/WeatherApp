@@ -2,6 +2,7 @@ package com.plcoding.weatherapp.presentation
 
 import android.app.Application
 import android.location.Geocoder
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -19,11 +20,12 @@ import javax.inject.Inject
 class WeatherViewModel @Inject constructor(
     private val repository: WeatherRepository,
     private val locationTracker: LocationTracker,
-    private val app:Application
+    private val app: Application
 ) : ViewModel() {
 
     var state by mutableStateOf(WeatherState())
         private set
+
     fun loadWeatherInfo() {
         viewModelScope.launch {
             state = state.copy(
@@ -31,7 +33,10 @@ class WeatherViewModel @Inject constructor(
                 error = null
             )
             locationTracker.getCurrentLocation()?.let { location ->
-                when (val result = repository.getWeatherData(location.latitude, location.longitude)) {
+                when (
+                    val result =
+                        repository.getWeatherData(location.latitude, location.longitude)
+                ) {
                     is Resource.Success -> {
                         state = state.copy(
                             weatherInfo = result.data,
@@ -47,30 +52,15 @@ class WeatherViewModel @Inject constructor(
                         )
                     }
                 }
+                val geoCoder = Geocoder(app.applicationContext, Locale.getDefault())
+                val address = geoCoder.getFromLocation(location.latitude, location.longitude, 1)
+                state.weatherInfo?.currentWeatherData?.city = address[0].locality
+                Log.d("CityName", "${address[0].locality},${state.weatherInfo}")
             } ?: kotlin.run {
                 state = state.copy(
                     isLoading = false,
                     error = "Couldn't retrieve location. Make sure to grant permission and enable GPS."
                 )
-            }
-        }
-    }
-        fun loadCity() {
-        viewModelScope.launch {
-            locationTracker.getCurrentLocation()?.let { location ->
-                val lat = locationTracker.getCurrentLocation()!!.latitude
-                val long = locationTracker.getCurrentLocation()!!.longitude
-                var cityName: String?
-                val geoCoder = Geocoder(app.applicationContext, Locale.getDefault())
-                val address = geoCoder.getFromLocation(lat, long, 1)
-                cityName = address[0].adminArea
-                if (cityName == null) {
-                    cityName = address[0].locality
-                    if (cityName == null) {
-                        cityName = address[0].subAdminArea
-                    }
-                }
-                state.weatherInfo?.currentWeatherData?.city = cityName
             }
         }
     }
