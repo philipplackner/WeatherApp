@@ -4,6 +4,8 @@ import android.app.Application
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.plcoding.weatherapp.data.remote.WeatherApi
+import com.plcoding.weatherapp.domain.repository.WeatherRepository
+import com.plcoding.weatherapp.domain.usecase.GetWeatherUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,4 +34,10 @@ object AppModule {
     fun provideFusedLocationProviderClient(app: Application): FusedLocationProviderClient {
         return LocationServices.getFusedLocationProviderClient(app)
     }
+
+    @Provides
+    fun provideGetWeatherUseCase(weatherRepository: WeatherRepository): GetWeatherUseCase {
+        return GetWeatherUseCase(weatherRepository)
+    }
+
 }
