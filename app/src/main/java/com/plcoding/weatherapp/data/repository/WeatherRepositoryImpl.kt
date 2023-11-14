@@ -1,27 +1,22 @@
 package com.plcoding.weatherapp.data.repository
 
-import com.plcoding.weatherapp.data.mappers.toWeatherInfo
+import com.plcoding.weatherapp.data.dto.ForecastDataDto
+import com.plcoding.weatherapp.data.dto.ForecastDto
 import com.plcoding.weatherapp.data.remote.WeatherApi
 import com.plcoding.weatherapp.domain.repository.WeatherRepository
 import com.plcoding.weatherapp.domain.util.Resource
+import com.plcoding.weatherapp.domain.util.checkResponse
+import com.plcoding.weatherapp.domain.util.checkResponse2
 import com.plcoding.weatherapp.domain.weather.WeatherInfo
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
     private val api: WeatherApi
-): WeatherRepository {
+) : WeatherRepository {
 
-    override suspend fun getWeatherData(lat: Double, long: Double): Resource<WeatherInfo> {
-        return try {
-            Resource.Success(
-                data = api.getWeatherData(
-                    lat = lat,
-                    long = long
-                ).toWeatherInfo()
-            )
-        } catch(e: Exception) {
-            e.printStackTrace()
-            Resource.Error(e.message ?: "An unknown error occurred.")
-        }
-    }
+    override suspend fun getWeatherData(lat: Double, long: Double): Resource<WeatherInfo> =
+        checkResponse(api.getWeatherData(lat, long))
+
+    override suspend fun getForecast(lat: Double, long: Double): Resource<ForecastDto> =
+        checkResponse2(api.getDailyForecast(lat,long))
 }
