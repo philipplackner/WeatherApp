@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.plcoding.weatherapp.domain.location.LocationTracker
+import com.plcoding.weatherapp.domain.usecase.GetForecastUseCase
 import com.plcoding.weatherapp.domain.usecase.GetWeatherUseCase
 import com.plcoding.weatherapp.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,11 +19,35 @@ import javax.inject.Inject
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val getWeatherUseCase: GetWeatherUseCase,
+    private val getForecastUseCase: GetForecastUseCase,
     private val locationTracker: LocationTracker
 ) : ViewModel() {
 
+    private val TAG = "WeatherViewModel"
     var state by mutableStateOf(WeatherState())
         private set
+
+    fun loadForecast() {
+        viewModelScope.launch {
+            locationTracker.getCurrentLocation()?.let { location ->
+                getForecastUseCase.invoke(location.latitude,location.longitude).catch {
+                    Log.e(TAG, "loadForecast: ", it)
+                }.collect {
+                    when(it) {
+                        is Resource.Success -> {
+                            Log.i(TAG, "loadForecast: successful")
+                        }
+                        is Resource.Loading -> {
+                            Log.i(TAG, "loadForecast: loading")
+                        }
+                        is Resource.Error -> {
+                            Log.i(TAG, "loadForecast: error")
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     fun loadWeatherInfo() {
         viewModelScope.launch {

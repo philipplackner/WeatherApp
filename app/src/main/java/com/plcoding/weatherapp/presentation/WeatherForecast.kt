@@ -1,7 +1,10 @@
 package com.plcoding.weatherapp.presentation
 
-import android.util.Log
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
@@ -10,10 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import java.sql.Timestamp
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 
 @Composable
 fun WeatherForecast(

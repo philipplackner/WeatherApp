@@ -33,6 +33,7 @@ class MainActivity : ComponentActivity() {
             ActivityResultContracts.RequestMultiplePermissions()
         ) {
             viewModel.loadWeatherInfo()
+            viewModel.loadForecast()
         }
         permissionLauncher.launch(arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
